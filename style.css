@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Thai', sans-serif;
+    overflow: hidden;
+}
+
+.page {
+    background: linear-gradient(160deg, #0d3b6e 0%, #1a6496 40%, #0d9e71 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+    position: relative;
+    cursor: crosshair;
+}
+
+/* ==================== WAVE ==================== */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 180px;
+    border-radius: 50% 50% 0 0;
+    animation: wave-move linear infinite;
+}
+
+.wave1 {
+    background: #7dd6f5;
+    opacity: 0.18;
+    bottom: 20px;
+    animation-duration: 6s;
+}
+
+.wave2 {
+    background: #a8edce;
+    opacity: 0.12;
+    bottom: 0;
+    animation-duration: 9s;
+    animation-direction: reverse;
+}
+
+@keyframes wave-move {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ==================== DROPS CONTAINER ==================== */
+.drops-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* ==================== DROP ==================== */
+.drop {
+    position: absolute;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0%   { transform: translateY(-60px) scaleY(1); opacity: 0; }
+    10%  { opacity: 0.7; }
+    80%  { opacity: 0.5; }
+    100% { transform: translateY(110vh) scaleY(0.6); opacity: 0; }
+}
+
+/* ==================== FLOWER ==================== */
+.flower {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0;
+    animation: float-flower ease-in-out infinite;
+}
+
+@keyframes float-flower {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20%  { opacity: 0.8; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ==================== RIPPLE RING ==================== */
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(125, 220, 255, 0.35);
+    animation: ring-pulse ease-out forwards;
+}
+
+@keyframes ring-pulse {
+    0%   { transform: scale(0.5); opacity: 0.5; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ==================== SPLASH ==================== */
+.splash {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(125, 220, 255, 0.7) 0%, rgba(125, 220, 255, 0) 70%);
+    transform: scale(0);
+    animation: splash-anim 0.6s ease-out forwards;
+}
+
+@keyframes splash-anim {
+    0%   { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* ==================== CORNER LOTUS ==================== */
+.corner-lotus {
+    position: absolute;
+    font-size: 3.5rem;
+    opacity: 0.18;
+    filter: drop-shadow(0 0 12px rgba(100, 220, 255, 0.5));
+}
+
+.corner-lotus.tl { top: 20px;    left: 20px;  transform: rotate(-20deg); }
+.corner-lotus.tr { top: 20px;    right: 20px; transform: rotate(20deg); }
+.corner-lotus.bl { bottom: 20px; left: 20px;  transform: rotate(-30deg) scaleX(-1); }
+.corner-lotus.br { bottom: 20px; right: 20px; transform: rotate(30deg); }
+
+/* ==================== CONTENT ==================== */
+.content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.year-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0f7ff;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 6px 20px;
+    border-radius: 30px;
+    margin-bottom: 1.4rem;
+    backdrop-filter: blur(4px);
+    animation: fadein 1s ease forwards;
+}
+
+.title {
+    font-size: clamp(2.6rem, 9vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 4px 32px rgba(0, 150, 255, 0.4);
+    animation: title-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    letter-spacing: -1px;
+}
+
+.title-accent {
+    display: block;
+    background: linear-gradient(90deg, #7ddcff, #b0f7da, #ffd97d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    margin-top: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    color: rgba(220, 245, 255, 0.88);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 500px;
+    animation: fadein 1.2s ease 0.5s both;
+}
+
+.emoji-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 1.8rem 0 0.6rem;
+    animation: fadein 1.2s ease 0.8s both;
+}
+
+.emoji-row span {
+    display: inline-block;
+    animation: bob 2s ease-in-out infinite;
+}
+
+.emoji-row span:nth-child(2) { animation-delay: 0.3s; }
+.emoji-row span:nth-child(3) { animation-delay: 0.6s; }
+.emoji-row span:nth-child(4) { animation-delay: 0.9s; }
+.emoji-row span:nth-child(5) { animation-delay: 1.2s; }
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+}
+
+/* ==================== BUTTON ==================== */
+.btn {
+    margin-top: 2rem;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+    padding: 12px 36px;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.15s;
+    animation: fadein 1.2s ease 1s both;
+}
+
+.btn:hover  { background: rgba(255, 255, 255, 0.28); transform: scale(1.05); }
+.btn:active { transform: scale(0.97); }
+
+/* ==================== COUNTER ==================== */
+.splash-count {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    z-index: 20;
+}
+
+/* ==================== KEYFRAMES ==================== */
+@keyframes title-in {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+}
